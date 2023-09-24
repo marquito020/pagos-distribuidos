@@ -5,7 +5,7 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "dev": "ts-node --esm src/index.ts"
+    "dev": "nodemon src/index.ts"
   },
   "author": "WorkGroup <borysquiroga@gmail.com>",
   "license": "ISC",
