@@ -19,4 +19,15 @@ const getDeuda = async (req: Request, res: Response) => {
   }
 }
 
-export default { getAllDeudas, getDeuda };
+const getDeudasPersona = async (req: Request, res: Response) => {
+  try {
+    const deudas = await deudaService.getDeudasPersona(parseInt(req.params.id));
+    const montoTotalDeuda = (await deudaService.getMontoTotalDeudas(parseInt(req.params.id))).toString();
+    const montoTotalDeudaPagada = (await deudaService.getMontoTotalDeudasPagadas(parseInt(req.params.id))).toString();
+    res.json({ Deudas: deudas, MontoTotalDeudas: montoTotalDeuda, MontoTotalDeudaPagada: montoTotalDeudaPagada, MontoTotalDeudaPendiente: (parseFloat(montoTotalDeuda) - parseFloat(montoTotalDeudaPagada)).toString() });
+  } catch (error) {
+    res.status(500).json(error);
+  }
+}
+
+export default { getAllDeudas, getDeuda, getDeudasPersona };

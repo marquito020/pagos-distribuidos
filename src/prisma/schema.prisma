@@ -21,14 +21,16 @@ model Persona {
 model Deuda {
   id       Int       @id @default(autoincrement())
   monto    Int
+  saldo    Int
   persona  Persona   @relation(fields: [personaId], references: [id])
   personaId Int
-  pago     Pago?
+  pagos    Pago[]
 }
 
 model Pago {
   id     Int      @id @default(autoincrement())
+  monto  Int
   fecha  DateTime @default(now())
   deuda Deuda    @relation(fields: [deudaId], references: [id])
-  deudaId Int @unique
+  deudaId Int
 }

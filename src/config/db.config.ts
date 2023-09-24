@@ -7,7 +7,7 @@ function generarMontoAleatorio(min: number, max: number): number {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-/* Función para agregar deudas aleatorias a cada persona */
+// * Función para agregar deudas aleatorias a cada persona
 /* export const seeders = async () => {
     const personas = [
         { nombre: "Alva", apellido: "Guerra" },
@@ -121,10 +121,12 @@ function generarMontoAleatorio(min: number, max: number): number {
             const cantidadDeudas = generarMontoAleatorio(1, 3); // Generar entre 1 y 3 deudas
 
             // Crear deudas aleatorias para la persona actual
+            const monto = generarMontoAleatorio(500, 2000); // Rango de montos aleatorios
             for (let i = 0; i < cantidadDeudas; i++) {
                 await prisma.deuda.create({
                     data: {
-                        monto: generarMontoAleatorio(500, 2000), // Rango de montos aleatorios
+                        monto: monto,
+                        saldo: monto,
                         personaId: persona.id, // PersonaId debe coincidir con el índice en el arreglo
                     },
                 });
