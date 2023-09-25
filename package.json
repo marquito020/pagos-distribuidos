@@ -4,9 +4,8 @@
   "description": "Distributed Systems Project",
   "main": "index.js",
   "type": "module",
-   "prisma": {
+  "prisma": {
     "seed": "ts-node src/prisma/seed.ts"
-    
   },
   
   "scripts": {
