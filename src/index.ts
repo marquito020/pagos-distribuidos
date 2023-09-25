@@ -12,7 +12,6 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-
 app.use("/api", pagos);
 app.use("/api", deudas);
 app.use("/api", personas);
