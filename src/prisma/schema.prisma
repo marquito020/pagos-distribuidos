@@ -3,6 +3,7 @@
 
 generator client {
   provider = "prisma-client-js"
+  //previewFeatures = ["createMany"]
 }
 
 datasource db {
@@ -19,18 +20,18 @@ model Persona {
 }
 
 model Deuda {
-  id       Int       @id @default(autoincrement())
-  monto    Int
-  saldo    Int
-  persona  Persona   @relation(fields: [personaId], references: [id])
+  id        Int     @id @default(autoincrement())
+  monto     Int
+  saldo     Int
+  persona   Persona @relation(fields: [personaId], references: [id])
   personaId Int
-  pagos    Pago[]
+  pagos     Pago[]
 }
 
 model Pago {
-  id     Int      @id @default(autoincrement())
-  monto  Int
-  fecha  DateTime @default(now())
-  deuda Deuda    @relation(fields: [deudaId], references: [id])
+  id      Int      @id @default(autoincrement())
+  monto   Int
+  fecha   DateTime @default(now())
+  deuda   Deuda    @relation(fields: [deudaId], references: [id])
   deudaId Int
 }

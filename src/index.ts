@@ -3,7 +3,7 @@ import express from "express";
 import cors from "cors";
 import pagos from "./routes/pagos.routes.js";
 import deudas from "./routes/deudas.routes.js";
-/* import { seeders } from "./config/db.config.js"; */
+//import { seeders } from "./config/db.config.js";
 
 const app = express();
 
@@ -19,4 +19,4 @@ app.listen(3000, () => {
   console.log("Servidor funcionando en puerto 3000");
 });
 
-/* seeders(); */
+//seeders();

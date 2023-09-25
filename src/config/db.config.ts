@@ -1,4 +1,6 @@
 import PrismaClient from "@prisma/client";
+//import {Persona} from "../interfaces/persona.interface"
+//import {Deuda} from "../interfaces/deuda.interface"
 
 export const prisma = new PrismaClient.PrismaClient();
 
@@ -8,7 +10,7 @@ function generarMontoAleatorio(min: number, max: number): number {
 }
 
 // * Función para agregar deudas aleatorias a cada persona
-/* export const seeders = async () => {
+ export const seeders = async () => {
     const personas = [
         { nombre: "Alva", apellido: "Guerra" },
         { nombre: "Luciano", apellido: "Cabrera" },
@@ -114,25 +116,41 @@ function generarMontoAleatorio(min: number, max: number): number {
 
     const Persona = await prisma.persona.createMany({
         data: personas,
-    });
+    }).then();
 
-    prisma.persona.findMany().then((data) => {
-        data.forEach(async (persona) => {
-            const cantidadDeudas = generarMontoAleatorio(1, 3); // Generar entre 1 y 3 deudas
+    prisma.persona
 
-            // Crear deudas aleatorias para la persona actual
-            const monto = generarMontoAleatorio(500, 2000); // Rango de montos aleatorios
-            for (let i = 0; i < cantidadDeudas; i++) {
-                await prisma.deuda.create({
-                    data: {
-                        monto: monto,
-                        saldo: monto,
-                        personaId: persona.id, // PersonaId debe coincidir con el índice en el arreglo
-                    },
-                });
-            }
-        });
-    });
+    // prisma.persona.findMany().then((data: Persona[]) => {
+    //     data.forEach(async (persona: Persona) => {
+    //         const cantidadDeudas = generarMontoAleatorio(1, 3); // Generar entre 1 y 3 deudas
+
+    //         // Crear deudas aleatorias para la persona actual
+    //         const monto = generarMontoAleatorio(500, 2000); // Rango de montos aleatorios
+    //         for (let i = 0; i < cantidadDeudas; i++) {
+    //             const Deuda = await prisma.deuda.create({
+    //                 data: {
+    //                   // ... data to create a Deuda
+    //                             monto: monto,
+    //                             saldo: monto,
+    //                             personaId: persona.id, // PersonaId debe coincidir con el índice en el arreglo
+    //                         },
+    //                 }
+    //               })
+    //             // await prisma.deuda.create({
+    //             //     data: {
+
+    //             //     }
+    //             // })
+    //             // await prisma.deuda.create({
+    //             //     data: {
+    //             //         monto: monto,
+    //             //         saldo: monto,
+    //             //         personaId: persona.id, // PersonaId debe coincidir con el índice en el arreglo
+    //             //     },
+    //             // });
+    //         }
+    //     });
+    // });
 
     return { Persona };
-}; */
+}; 
