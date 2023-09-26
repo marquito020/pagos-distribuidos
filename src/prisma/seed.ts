@@ -5,11 +5,14 @@ dotenv.config();
 
 const prisma = new PrismaClient();
 
-const minNroDeudas = Number(process.env.minNroDeudas) || 1;
-const maxNroDeudas = Number(process.env.maxNroDeudas) || 5;
-const minMontoDeuda = Number(process.env.minMontoDeuda) || 500;
-const maxMontoDeuda = Number(process.env.maxMontoDeuda) || 2000;
-const maxPersonas = Number(process.env.maxPersonas) || 100;
+const minNroDeudas = Number(process.env.minNroDeudas);
+const maxNroDeudas = Number(process.env.maxNroDeudas);
+const minMontoDeuda = Number(process.env.minMontoDeuda);
+const maxMontoDeuda = Number(process.env.maxMontoDeuda);
+const maxPersonas = Number(process.env.maxPersonas);
+
+console.log("minNroDeudas", process.env.minNroDeudas);
+console.log("maxNroDeudas", process.env.maxNroDeudas);
 
 function randomize(min: number, max: number): number {
   return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -17,6 +20,13 @@ function randomize(min: number, max: number): number {
 
 const load = async () => {
   try {
+    await prisma.$queryRaw`ALTER SEQUENCE "Deuda_id_seq"
+    RESTART WITH 1;`;
+    await prisma.$queryRaw`ALTER SEQUENCE "Pago_id_seq"
+    RESTART WITH 1;`;
+    await prisma.$queryRaw`ALTER SEQUENCE "Persona_id_seq"
+    RESTART WITH 1;`;
+
     await prisma.deuda.deleteMany();
     await prisma.persona.deleteMany();
 
