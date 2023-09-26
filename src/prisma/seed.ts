@@ -20,17 +20,16 @@ function randomize(min: number, max: number): number {
 
 const load = async () => {
   try {
+    await prisma.pago.deleteMany();
+    await prisma.deuda.deleteMany();
+    await prisma.persona.deleteMany();
+
     await prisma.$queryRaw`ALTER SEQUENCE "Deuda_id_seq"
     RESTART WITH 1;`;
     await prisma.$queryRaw`ALTER SEQUENCE "Pago_id_seq"
     RESTART WITH 1;`;
     await prisma.$queryRaw`ALTER SEQUENCE "Persona_id_seq"
     RESTART WITH 1;`;
-
-    await prisma.deuda.deleteMany();
-    await prisma.persona.deleteMany();
-
-    await prisma.pago.deleteMany();
 
     for (let i = 0; i < maxPersonas; i++) {
       await prisma.persona.create({
