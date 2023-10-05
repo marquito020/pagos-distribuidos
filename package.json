@@ -5,16 +5,16 @@
   "main": "index.js",
   "type": "module",
   "prisma": {
-    "seed": "ts-node src/prisma/seed.ts"
+    "seed": "ts-node src/prisma/seed.ts",
+    "schema": "src/prisma/schema.prisma"
   },
-  
   "scripts": {
     "dev": "nodemon src/index.ts"
   },
   "author": "WorkGroup <borysquiroga@gmail.com>",
   "license": "ISC",
   "dependencies": {
-    "@prisma/client": "^5.3.1",
+    "@prisma/client": "^5.4.1",
     "@types/cors": "^2.8.14",
     "@types/express": "^4.17.17",
     "cors": "^2.8.5",
@@ -26,6 +26,6 @@
   },
   "devDependencies": {
     "@faker-js/faker": "^8.1.0",
-    "prisma": "^5.3.1"
+    "prisma": "^5.4.1"
   }
 }
