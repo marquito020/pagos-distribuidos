@@ -3,13 +3,11 @@
 
 generator client {
   provider = "prisma-client-js"
-  //previewFeatures = ["createMany"]
 }
 
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
-  directUrl= env("DATABASE_DIRECT_URL")
 }
 
 model Persona {
@@ -35,4 +33,5 @@ model Pago {
   fecha   DateTime @default(now())
   deuda   Deuda    @relation(fields: [deudaId], references: [id])
   deudaId Int
+  pagoHash String @unique
 }
